@@ -52,18 +52,26 @@ function displayContent() {
     for (let i = 0; i < arr.length; i++) {
 
         console.log(arr[i].Name);
-
-
-
         let contentBody = document.querySelector('.content-body');
 
+        let section = document.createElement('section');
+        let circle = document.createElement('div');
+        circle.className = "circle";
 
-
+        
+        
+        
+        
         let label = document.createElement('p');
-
-        label.innerText = arr[i].Name;
-
-        labels.appendChild(label);
+        let span = document.createElement('span');
+        span.innerText = "0%"
+        label.innerText = arr[i].Name + " ... ";
+        
+        label.append(span);
+        
+        section.appendChild(circle);
+        section.appendChild(label);
+        labels.appendChild(section);
 
         contentBody.appendChild(labels);
 
