@@ -13,7 +13,7 @@ let analyzeBtn = document.getElementById('analyze');
 
 //Enables the analyze button
 input.addEventListener('keydown', () => {
-    if(input.value !== ''){
+    if (input.value !== '') {
         analyzeBtn.removeAttribute('disabled');
         analyzeBtn.style.opacity = 1;
     }
@@ -22,7 +22,7 @@ input.addEventListener('keydown', () => {
 
 //Disables the analyze button
 input.addEventListener('keyup', () => {
-    if(input.value == ''){
+    if (input.value == '') {
         analyzeBtn.setAttribute('disabled', '');
         analyzeBtn.style.opacity = 0.5;
     }
@@ -30,14 +30,13 @@ input.addEventListener('keyup', () => {
 
 //Disables the analyze button on click
 analyzeBtn.addEventListener('click', () => {
-    if(input.value !== ''){
+    if (input.value !== '') {
         analyzeBtn.setAttribute('disabled', '');
         input.setAttribute('disabled', '');
         analyzeBtn.style.opacity = 0.5;
         input.style.opacity = 0.5;
     }
 })
-    
 
 
 
@@ -51,24 +50,28 @@ function displayContent() {
 
     for (let i = 0; i < arr.length; i++) {
 
-        console.log(arr[i].Name);
+        // console.log(arr[i].Name);
         let contentBody = document.querySelector('.content-body');
 
         let section = document.createElement('section');
         let circle = document.createElement('div');
         circle.className = "circle";
 
-        
-        
-        
-        
+
+
+
+
         let label = document.createElement('p');
-        let span = document.createElement('span');
-        span.innerText = "0%"
+        let percentValue = document.createElement('span');
+        let percentSymbol = document.createElement('span');
+        percentValue.innerText = 0;
+        percentValue.className = "percentage";
+        percentSymbol.innerText = "%";
         label.innerText = arr[i].Name + " ... ";
-        
-        label.append(span);
-        
+
+        label.append(percentValue);
+        label.append(percentSymbol);
+
         section.appendChild(circle);
         section.appendChild(label);
         labels.appendChild(section);
@@ -77,10 +80,168 @@ function displayContent() {
 
 
     }
+
+    timer(arr);
+}
+
+// percentage = intervalDuration / Time * 100
+
+// function timer() {
+
+//     let percentage = document.querySelector(".percentage");
+
+//     for(let i=0; i<arr.length; i++){
+//         let intervalDuration = arr[i].Time / arr[i].Divisions;
+//         let delay = intervalDuration*1000;
+//         let per = (intervalDuration / arr[i].Time) * 100;
+
+//         const loop = setInterval(() => { 
+//             if (intervalDuration <= arr[i].Time) { 
+//                 clearInterval(loop) 
+//             } 
+//             console.log(intervalDuration += intervalDuration) 
+//         }, delay);
+//         console.log(arr[i].Name, intervalDuration+'s per '+ per + '% interval');
+//     }
+// }
+
+
+function timer(arr) {
+
+    let loop;
+    let i = 0;
+
+    
+    const ele = [...document.querySelector('.labels').children];
+    const circle = ele[0].firstChild;
+    
+
+
+    if (i < arr.length) {
+        console.log("i before setInterval", i);
+        let percentage = ele[i].lastChild.children[0];
+        let intervalDuration = arr[i].Time / arr[i].Divisions;
+        let delay = intervalDuration * 1000;
+        let per = (intervalDuration / arr[i].Time) * 100;
+        
+        setTimeout(function(){loop = setInterval(() => {
+            if (per <= 100) {
+                percentage.innerText = per;
+                per += per;
+            }
+            else {
+                per = 100;
+                percentage.innerText = per;
+                circle.style.backgroundColor = 'rgb(0, 121, 202)';
+                circle.style.transition = 'linear 1s';
+                // console.log(i);
+                clearInterval(loop);
+                // i++;
+                console.log("i after setInterval", i);
+            }
+            // else {
+            //     per += per;
+            // }
+            console.log(per);
+        }, delay)}, arr[i].Time);
+        // timer(arr);
+    }
+    
+
+    // i++;
+    console.log("code after if")
+
 }
 
 
 
+
+// function timer(arr) {
+
+//     let loop;
+//     let i = 0;
+
+//     const ele = [...document.querySelector('.labels').children];
+
+    
+//     for(let i=0; i<arr.length; i++){
+//         console.log("i before setInterval", i);
+//         let percentage = ele[i].lastChild.children[0];
+//         let intervalDuration = arr[i].Time / arr[i].Divisions;
+//         let delay = intervalDuration * 1000;
+//         let per = (intervalDuration / arr[i].Time) * 100;
+//     }
+    
+        
+
+//         loop = setInterval(() => {
+//             if (per <= 100) {
+//                 percentage.innerText = per;
+//                 per += per;
+//             }
+//             else {
+//                 per = 100;
+//                 percentage.innerText = per;
+//                 // console.log(i);
+//                 clearInterval(loop);
+                
+//                 console.log("i after setInterval", i);
+//             }
+//             // else {
+//             //     per += per;
+//             // }
+//             console.log(per);
+//         }, delay);
+    
+    
+
+//     // i++;
+//     console.log("code after if")
+
+// }
+
+
+
+
+
+
+
+
+
+// function displayPercentage(arr) {
+
+//     const ele = [...document.querySelector('.labels').children];
+
+//     for (let i = 0; i < ele.length; i++) {
+
+//         let percentage = ele[i].lastChild.children[0];
+//         let intervalDuration = arr[i].Time / arr[i].Divisions;
+//         let delay = intervalDuration * 1000;
+//         let per = (intervalDuration / arr[i].Time) * 100;
+
+//         // arr.forEach(() => {
+//         let loop = setInterval(() => {
+//             if (per <= 100) {
+//                 percentage.innerText = per;
+//                 per += per;
+//             }
+//             else {
+//                 per = 100;
+//                 clearInterval(loop);
+//             }
+//             // else {
+//             //     per += per;
+//             // }
+//             console.log(per);
+//         }, delay);  // delay per interval
+
+//         //    });
+
+//     }
+
+
+
+// }
 
 
 
