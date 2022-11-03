@@ -45,16 +45,23 @@ analyzeBtn.addEventListener('click', displayContent);
 
 
 function displayContent() {
-    // analyzeBtn.value = '';
-    // let loader = document.querySelector('.loader');
-    // loader.style.visibility = 'visible';
+    let contentBody = document.querySelector('.content-body');
+    // if(contentBody.hasChildNodes()){
+    //     contentBody.removeChild(document.querySelector('.labels'));
+    // }
+    analyzeBtn.innerText = '';
+    let loader = document.createElement('div');
+    analyzeBtn.append(loader);
+    loader.className = 'loader';
+    loader.style.display = 'block';
     let labels = document.createElement('div');
     labels.className = "labels";
+    let totalDuration = 0;
+
 
     for (let i = 0; i < arr.length; i++) {
-
+        totalDuration += arr[i].Time * 1000;
         // console.log(arr[i].Name);
-        let contentBody = document.querySelector('.content-body');
 
         let section = document.createElement('section');
         let circle = document.createElement('div');
@@ -85,6 +92,17 @@ function displayContent() {
     }
 
     timer(arr);
+    setTimeout(enable, totalDuration/3);
+}
+
+function enable() {
+        analyzeBtn.removeAttribute('disabled');
+        input.removeAttribute('disabled');
+        analyzeBtn.innerText = 'Analyze';
+        input.value = '';
+        analyzeBtn.style.opacity = 1;
+        input.style.opacity = 1;
+        // analyzeBtn.removeChild(loader);
 }
 
 // percentage = intervalDuration / Time * 100
@@ -111,13 +129,14 @@ function displayContent() {
 
 function timer(arr) {
 
-    let i = 0;
+    // let i = 0;
     let delay = 0;
     for(let j=0; j<arr.length; j++){
         
         delay += arr[j].Time;
-        // console.log("delay", delay);
-        setTimeout(displayPercent(j), delay);
+        console.log("delay", delay);
+        setTimeout(displayPercent(j), delay*1000);
+        // i++;
     }
 
 }
@@ -163,7 +182,7 @@ function displayPercent(i){
     
 
     // i++;
-    console.log("code after if")
+    // console.log("code after if")
 
 }
 
