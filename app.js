@@ -45,6 +45,9 @@ analyzeBtn.addEventListener('click', displayContent);
 
 
 function displayContent() {
+    // analyzeBtn.value = '';
+    // let loader = document.querySelector('.loader');
+    // loader.style.visibility = 'visible';
     let labels = document.createElement('div');
     labels.className = "labels";
 
@@ -108,14 +111,25 @@ function displayContent() {
 
 function timer(arr) {
 
-    let loop;
     let i = 0;
+    let delay = 0;
+    for(let j=0; j<arr.length; j++){
+        
+        delay += arr[j].Time;
+        // console.log("delay", delay);
+        setTimeout(displayPercent(j), delay);
+    }
 
+}
     
+    
+
+   
+
+function displayPercent(i){
+    let loop;
     const ele = [...document.querySelector('.labels').children];
-    const circle = ele[0].firstChild;
-    
-
+    const circle = ele[i].firstChild;
 
     if (i < arr.length) {
         console.log("i before setInterval", i);
@@ -124,7 +138,7 @@ function timer(arr) {
         let delay = intervalDuration * 1000;
         let per = (intervalDuration / arr[i].Time) * 100;
         
-        setTimeout(function(){loop = setInterval(() => {
+        loop = setInterval(() => {
             if (per <= 100) {
                 percentage.innerText = per;
                 per += per;
@@ -143,7 +157,7 @@ function timer(arr) {
             //     per += per;
             // }
             console.log(per);
-        }, delay)}, arr[i].Time);
+        }, delay)
         // timer(arr);
     }
     
@@ -152,8 +166,6 @@ function timer(arr) {
     console.log("code after if")
 
 }
-
-
 
 
 // function timer(arr) {
