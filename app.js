@@ -76,6 +76,7 @@ function displayContent() {
         let percentSymbol = document.createElement('span');
         percentValue.innerText = 0;
         percentValue.className = "percentage";
+        percentSymbol.className = "symbol";
         percentSymbol.innerText = "%";
         label.innerText = arr[i].Name + " ... ";
 
@@ -149,6 +150,8 @@ function displayPercent(i){
     let loop;
     const ele = [...document.querySelector('.labels').children];
     const circle = ele[i].firstChild;
+    let percentValue = ele[i].children[1].children[0];
+    let percentSymbol = ele[i].children[1].children[1];
 
     if (i < arr.length) {
         console.log("i before setInterval", i);
@@ -167,6 +170,10 @@ function displayPercent(i){
                 percentage.innerText = per;
                 circle.style.backgroundColor = 'rgb(0, 121, 202)';
                 circle.style.transition = 'linear 1s';
+                percentSymbol.style.display = 'none';
+                percentValue.innerHTML = `<i class="fa-solid fa-check"></i>`;
+                percentValue.style.fontSize = '16px';
+                // percentValue.style.transition = 'linear 1s';
                 // console.log(i);
                 clearInterval(loop);
                 // i++;
