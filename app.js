@@ -93,7 +93,7 @@ function displayContent() {
     }
 
     timer(arr);
-    setTimeout(enable, totalDuration/3);
+    setTimeout(enable, totalDuration);
 }
 
 function enable() {
@@ -134,9 +134,9 @@ function timer(arr) {
     let delay = 0;
     for(let j=0; j<arr.length; j++){
         
+        console.log("delay", delay + "s");
+        setTimeout(displayPercent, delay*1000, j);
         delay += arr[j].Time;
-        console.log("delay", delay);
-        setTimeout(displayPercent(j), delay*1000);
         // i++;
     }
 
