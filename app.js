@@ -9,6 +9,7 @@ const arr = [
 
 let input = document.getElementById('input-box');
 let analyzeBtn = document.getElementById('analyze');
+let backBtn = document.querySelector('.fa-arrow-left');
 
 
 //Enables the analyze button
@@ -45,6 +46,7 @@ analyzeBtn.addEventListener('click', displayContent);
 
 
 function displayContent() {
+    backBtn.style.visibility = 'hidden';
     let contentBody = document.querySelector('.content-body');
     if(contentBody.hasChildNodes()){
         contentBody.innerHTML = '';
@@ -98,6 +100,7 @@ function enable() {
     analyzeBtn.removeAttribute('disabled');
     input.removeAttribute('disabled');
     analyzeBtn.innerText = 'Analyze';
+    backBtn.style.visibility = 'visible';
     input.value = '';
     analyzeBtn.style.opacity = 1;
     input.style.opacity = 1;

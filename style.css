@@ -14,7 +14,30 @@ body {
     background-color: rgb(248, 248, 248);
 }
 
+.main-container .fa-arrow-left {
+    display: block;
+    text-align: left;
+    margin-left: 16px;
+    margin-top: -14px;
+    width: 32px;
+    height: 32px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    visibility: hidden;
+
+   
+}
+
+.main-container .fa-arrow-left:hover{
+    background-color: rgb(245, 245, 245);
+    
+}
+
 .main-container {
+    position: relative;
     padding-top: 40px;
     margin: auto;
     height: 600px;
