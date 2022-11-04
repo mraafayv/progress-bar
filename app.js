@@ -46,9 +46,9 @@ analyzeBtn.addEventListener('click', displayContent);
 
 function displayContent() {
     let contentBody = document.querySelector('.content-body');
-    // if(contentBody.hasChildNodes()){
-    //     contentBody.removeChild(document.querySelector('.labels'));
-    // }
+    if(contentBody.hasChildNodes()){
+        contentBody.innerHTML = '';
+    }
     analyzeBtn.innerText = '';
     let loader = document.createElement('div');
     analyzeBtn.append(loader);
@@ -61,8 +61,6 @@ function displayContent() {
 
     for (let i = 0; i < arr.length; i++) {
         totalDuration += arr[i].Time * 1000;
-        // console.log(arr[i].Name);
-
         let section = document.createElement('section');
         let circle = document.createElement('div');
         circle.className = "circle";
@@ -97,56 +95,34 @@ function displayContent() {
 }
 
 function enable() {
-        analyzeBtn.removeAttribute('disabled');
-        input.removeAttribute('disabled');
-        analyzeBtn.innerText = 'Analyze';
-        input.value = '';
-        analyzeBtn.style.opacity = 1;
-        input.style.opacity = 1;
-        // analyzeBtn.removeChild(loader);
+    analyzeBtn.removeAttribute('disabled');
+    input.removeAttribute('disabled');
+    analyzeBtn.innerText = 'Analyze';
+    input.value = '';
+    analyzeBtn.style.opacity = 1;
+    input.style.opacity = 1;
 }
 
-// percentage = intervalDuration / Time * 100
 
-// function timer() {
-
-//     let percentage = document.querySelector(".percentage");
-
-//     for(let i=0; i<arr.length; i++){
-//         let intervalDuration = arr[i].Time / arr[i].Divisions;
-//         let delay = intervalDuration*1000;
-//         let per = (intervalDuration / arr[i].Time) * 100;
-
-//         const loop = setInterval(() => { 
-//             if (intervalDuration <= arr[i].Time) { 
-//                 clearInterval(loop) 
-//             } 
-//             console.log(intervalDuration += intervalDuration) 
-//         }, delay);
-//         console.log(arr[i].Name, intervalDuration+'s per '+ per + '% interval');
-//     }
-// }
 
 
 function timer(arr) {
 
-    // let i = 0;
     let delay = 0;
-    for(let j=0; j<arr.length; j++){
-        
+    for (let j = 0; j < arr.length; j++) {
+
         console.log("delay", delay + "s");
-        setTimeout(displayPercent, delay*1000, j);
+        setTimeout(displayPercent, delay * 1000, j);
         delay += arr[j].Time;
-        // i++;
     }
 
 }
-    
-    
 
-   
 
-function displayPercent(i){
+
+
+
+function displayPercent(i) {
     let loop;
     const ele = [...document.querySelector('.labels').children];
     const circle = ele[i].firstChild;
@@ -159,7 +135,7 @@ function displayPercent(i){
         let intervalDuration = arr[i].Time / arr[i].Divisions;
         let delay = intervalDuration * 1000;
         let per = (intervalDuration / arr[i].Time) * 100;
-        
+
         loop = setInterval(() => {
             if (per <= 100) {
                 percentage.innerText = per;
@@ -174,114 +150,19 @@ function displayPercent(i){
                 percentValue.innerHTML = `<i class="fa-solid fa-check"></i>`;
                 percentValue.style.fontSize = '16px';
                 // percentValue.style.transition = 'linear 1s';
-                // console.log(i);
                 clearInterval(loop);
-                // i++;
                 console.log("i after setInterval", i);
             }
-            // else {
-            //     per += per;
-            // }
+
             console.log(per);
         }, delay)
-        // timer(arr);
-    }
-    
 
-    // i++;
-    // console.log("code after if")
+    }
+
+
+
 
 }
-
-
-// function timer(arr) {
-
-//     let loop;
-//     let i = 0;
-
-//     const ele = [...document.querySelector('.labels').children];
-
-    
-//     for(let i=0; i<arr.length; i++){
-//         console.log("i before setInterval", i);
-//         let percentage = ele[i].lastChild.children[0];
-//         let intervalDuration = arr[i].Time / arr[i].Divisions;
-//         let delay = intervalDuration * 1000;
-//         let per = (intervalDuration / arr[i].Time) * 100;
-//     }
-    
-        
-
-//         loop = setInterval(() => {
-//             if (per <= 100) {
-//                 percentage.innerText = per;
-//                 per += per;
-//             }
-//             else {
-//                 per = 100;
-//                 percentage.innerText = per;
-//                 // console.log(i);
-//                 clearInterval(loop);
-                
-//                 console.log("i after setInterval", i);
-//             }
-//             // else {
-//             //     per += per;
-//             // }
-//             console.log(per);
-//         }, delay);
-    
-    
-
-//     // i++;
-//     console.log("code after if")
-
-// }
-
-
-
-
-
-
-
-
-
-// function displayPercentage(arr) {
-
-//     const ele = [...document.querySelector('.labels').children];
-
-//     for (let i = 0; i < ele.length; i++) {
-
-//         let percentage = ele[i].lastChild.children[0];
-//         let intervalDuration = arr[i].Time / arr[i].Divisions;
-//         let delay = intervalDuration * 1000;
-//         let per = (intervalDuration / arr[i].Time) * 100;
-
-//         // arr.forEach(() => {
-//         let loop = setInterval(() => {
-//             if (per <= 100) {
-//                 percentage.innerText = per;
-//                 per += per;
-//             }
-//             else {
-//                 per = 100;
-//                 clearInterval(loop);
-//             }
-//             // else {
-//             //     per += per;
-//             // }
-//             console.log(per);
-//         }, delay);  // delay per interval
-
-//         //    });
-
-//     }
-
-
-
-// }
-
-
 
 
 
